@@ -1,15 +1,170 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
+    <ion-title color="success" class="ion-text-center">
+      Consilio
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="ion-text-center"><h4>Histórico de gastos e ganhos</h4></div>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item style="border-width: 0"> 
+            <ion-label>Mês</ion-label>
+            <ion-select style="width:60%">
+              <ion-select-option value="black">Janeiro</ion-select-option>
+              <ion-select-option value="black">Fevereiro</ion-select-option>
+              <ion-select-option value="black">Março</ion-select-option>
+              <ion-select-option value="black">Abril</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col lines="none">
+          <ion-item style="border-width: 0">
+            <ion-label>Ano</ion-label>
+            <ion-select style="width:60%">
+              <ion-select-option value="black">2021</ion-select-option>
+              <ion-select-option value="black">2020</ion-select-option>
+              <ion-select-option value="black">2019</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+              <ion-select-option value="black">2018</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="row header">
+    <div class="col">Nome</div>
+    <div class="col">Tipo</div>
+    <div class="col">Valor</div>
+    <div class="col">Data</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
+  <div class="row" ng-repeat="data in ctrl.data">
+    <div class="col">Teste</div>
+    <div class="col">Teste</div>
+    <div class="col">R$20,00</div>
+    <div class="col">02/08/21</div>
+  </div>
 </ion-content>
+<ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          Recebimentos
+        </ion-col>
+        <ion-col>
+          R$60.000,00
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          Gastos
+        </ion-col>
+        <ion-col>
+          R$5.000,00
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          Saldo mês
+        </ion-col>
+        <ion-col>
+          R$55.000,00
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-footer>
