@@ -1,0 +1,7 @@
+{
+  "name": "ConsilioApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
