@@ -62,7 +62,7 @@ export class Tab1Page {
           this.nome = undefined;
           this.tipo = undefined;
           this.valor = undefined;
-          financa.data_operacao = undefined;
+          this.data_operacao = undefined;
           this.ionViewDidEnter();
         })
         .catch((error) => {

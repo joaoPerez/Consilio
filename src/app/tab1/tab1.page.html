@@ -7,7 +7,6 @@
 </ion-header>
 
 <ion-content>
-
   <ion-grid>
     <ion-row>
       <ion-col size="3">Nome</ion-col>
@@ -17,32 +16,32 @@
       <ion-col size="1"></ion-col>
     </ion-row>
     <div *ngFor="let financa of financas; let i = index">
-      <form (ngSubmit)="excluir(financa.id)">
-        <ion-row>
-          <ion-col size="3">{{financa.nome}}</ion-col>
-          <ion-col size="2">{{financa.tipo}}</ion-col>
-          <ion-col size="2">R${{financa.valor}}</ion-col>
-          <ion-col size="3">{{financa.data_operacao}}</ion-col>
-          <ion-col size="1">
-            <ion-button icon-only clear style="background: transparent" type="submit">
-              <ion-icon name="trash" color="primary" style="font-size: 20px"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </form>
+      <ion-row>
+        <ion-col size="3">{{financa.nome}}</ion-col>
+        <ion-col size="2">{{financa.tipo}}</ion-col>
+        <ion-col size="2">R${{financa.valor}}</ion-col>
+        <ion-col size="3">{{financa.data_operacao}}</ion-col>
+        <ion-col size="1">
+          <button ion-button icon-only clear style="background: transparent" (click)="excluir(financa.id)">
+            <ion-icon name="trash" color="primary" style="font-size: 20px"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
     </div>
   </ion-grid>
 </ion-content>
 
 <ion-content>
-  <form (ngSubmit)="adicionar()">
     <ion-grid>
       <ion-row>
         <ion-col>
           <ion-input type="text" name="nome" [(ngModel)]="nome" placeholder="nome"></ion-input>
         </ion-col>
         <ion-col>
-          <ion-input type="text" name="tipo" [(ngModel)]="tipo" placeholder="tipo"></ion-input>
+          <ion-select placeholder="Tipo" name="tipo" [(ngModel)]="tipo">
+            <ion-select-option value="Ganho">Ganho</ion-select-option>
+            <ion-select-option value="Gasto">Gasto</ion-select-option>
+          </ion-select>
         </ion-col>
         <ion-col>
           <ion-input type="number" name="valor" [(ngModel)]="valor" placeholder="valor"></ion-input>
@@ -53,9 +52,10 @@
       </ion-row>
     </ion-grid>
     <div class="ion-text-center" type="submit">
-      <ion-button color="primary" type="submit">Adicionar</ion-button>
+      <button ion-button icon-only clear style="background: transparent" (click)="adicionar()">
+        <ion-icon name="add-circle" color="primary" style="font-size: 60px"></ion-icon>
+      </button>
     </div>
-  </form>
 </ion-content>
 <ion-footer>
   <ion-grid>
