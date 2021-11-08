@@ -100,6 +100,7 @@ export class DatabaseService {
           });
         }
       }
+      
       this.financas.next(items);
       financas = items;
     }).then(() => {
