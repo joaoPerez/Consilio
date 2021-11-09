@@ -104,6 +104,4 @@ export class Tab1Page {
     toast.present();
   }
 
-  }
 }
-//teste
