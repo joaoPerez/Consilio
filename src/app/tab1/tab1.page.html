@@ -9,52 +9,53 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="4">Nome</ion-col>
-      <ion-col>Tipo</ion-col>
-      <ion-col>Valor</ion-col>
-      <ion-col>Data</ion-col>
+      <ion-col size="3">Nome</ion-col>
+      <ion-col size="2">Tipo</ion-col>
+      <ion-col size="2">Valor</ion-col>
+      <ion-col size="3">Data</ion-col>
       <ion-col size="1"></ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="4">Teste Teste</ion-col>
-      <ion-col>Teste</ion-col>
-      <ion-col>R$20,00</ion-col>
-      <ion-col>02/08/21</ion-col>
-      <ion-col size="1">
-        <div>
-          <button ion-button icon-only clear style="background: transparent">
+    <div *ngFor="let financa of financas; let i = index">
+      <ion-row>
+        <ion-col size="3">{{financa.nome}}</ion-col>
+        <ion-col size="2">{{financa.tipo}}</ion-col>
+        <ion-col size="2">R${{financa.valor}}</ion-col>
+        <ion-col size="3">{{financa.data_operacao}}</ion-col>
+        <ion-col size="1">
+          <button ion-button icon-only clear style="background: transparent" (click)="excluir(financa.id)">
             <ion-icon name="trash" color="primary" style="font-size: 20px"></ion-icon>
           </button>
-        </div>
-      </ion-col>
-    </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 </ion-content>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-input type="text" name="name" placeholder="nome"></ion-input>
-      </ion-col>
-      <ion-col>
-        <ion-input type="text" name="type" placeholder="tipo"></ion-input>
-      </ion-col>
-      <ion-col>
-        <ion-input type="number" name="value" placeholder="valor"></ion-input>
-      </ion-col>
-      <ion-col>
-        <ion-input type="date" name="data"></ion-input>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <div class="ion-text-center">
-    <button ion-button icon-only clear style="background: transparent">
-      <ion-icon name="add-circle" color="primary" style="font-size: 60px"></ion-icon>
-    </button>
-  </div>
-
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input type="text" name="nome" [(ngModel)]="nome" placeholder="nome"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-select placeholder="Tipo" name="tipo" [(ngModel)]="tipo">
+            <ion-select-option value="Ganho">Ganho</ion-select-option>
+            <ion-select-option value="Gasto">Gasto</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-input type="number" name="valor" [(ngModel)]="valor" placeholder="valor"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input type="date" name="data_operacao" [(ngModel)]="data_operacao"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="ion-text-center" type="submit">
+      <button ion-button icon-only clear style="background: transparent" (click)="adicionar()">
+        <ion-icon name="add-circle" color="primary" style="font-size: 60px"></ion-icon>
+      </button>
+    </div>
 </ion-content>
 <ion-footer>
   <ion-grid>
