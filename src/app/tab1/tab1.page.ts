@@ -13,10 +13,15 @@ import { ThisReceiver } from '@angular/compiler';
 export class Tab1Page {
 
   financas: Financa[];
+
   nome: string;
   tipo: string;
   valor: number;
   data_operacao: string;
+
+  gastos: number = 0;
+  ganhos: number = 0;
+  saldo_total: number = 0;
 
   constructor(
     private router: Router,
@@ -29,6 +34,11 @@ export class Tab1Page {
     this.databaseService.getAll()
       .then((result) => {
         this.financas = result;
+
+        this.financas.forEach(
+          x => x.tipo == "Ganho" ? this.ganhos += x.valor : this.gastos += x.valor);
+
+        this.saldo_total = this.ganhos - this.gastos;
       });
   }
 
