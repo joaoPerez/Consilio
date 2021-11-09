@@ -1,14 +1,8 @@
--- CREATE TABLE IF NOT EXISTS produtos(
---     id INTEGER PRIMARY KEY AUTOINCREMENT,
---     nome TEXT, 
---     quantidade INTEGER,
---     valor REAL
--- );
-
-CREATE TABLE IF NOT EXIST operacoes(
+CREATE TABLE IF NOT EXISTS financas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT,
-    tipo bit,
+    nome TEXT, 
+    tipo TEXT,
     valor REAL,
-    dataInclusao date
+    data_criacao TEXT,
+    data_operacao TEXT
 );

@@ -9,22 +9,29 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SQLite } from '@ionic-native/sqlite/ngx';
+import { HttpClientModule } from '@angular/common/http';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule],
+    HttpClientModule
+  ],
   providers: [
     SQLite,
     SQLitePorter,
-    { provide: RouteReuseStrategy, 
+    { 
+      provide: RouteReuseStrategy, 
       useClass: IonicRouteStrategy 
-    }],
+    }
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+
+export class AppModule {
+
+}
