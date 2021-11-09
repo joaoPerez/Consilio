@@ -15,7 +15,7 @@ export class StorageService {
   private storage: SQLiteObject;
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  produtos = new BehaviorSubject([]);
+  operacoes = new BehaviorSubject([]);
 
   constructor(
     private plt: Platform,
@@ -29,7 +29,7 @@ export class StorageService {
     console.log('inicialou')
     this.plt.ready().then(() => {
       this.sqlite.create({
-        name: 'produtos.db',
+        name: 'operacoes.db',
         location: 'default'
       })
         .then((db: SQLiteObject) => {
@@ -52,57 +52,59 @@ export class StorageService {
 
   }
 
-  public insert(produto: Produto) {
-    let data = [produto.nome, produto.quant, produto.valor];
-    return this.storage.executeSql('INSERT INTO produtos (nome, quantidade, valor) VALUES (?, ?, ?)', data)
+  public insert(operacao: Operacoes) {
+    let data = [operacao.nome, operacao.tipo, operacao.valor, operacao.dataInclusao];
+    return this.storage.executeSql('INSERT INTO operacoes (nome, tipo, valor, dataInclusao) VALUES (?, ?, ?,?)', data)
       .then(res => {
         return res.insertId;
       });
   }
 
-  public update(produto: Produto) {
-    let data = [produto.nome, produto.quant, produto.valor];
-    return this.storage.executeSql(`UPDATE produtos SET nome = ?, quantidade = ?, valor = ? WHERE id = ${produto.id}`, data);
-  }
+  // public update(produto: Produto) {
+  //   let data = [produto.nome, produto.quant, produto.valor];
+  //   return this.storage.executeSql(`UPDATE produtos SET nome = ?, quantidade = ?, valor = ? WHERE id = ${produto.id}`, data);
+  // }
 
   public remove(id: number) {
-    return this.storage.executeSql('DELETE FROM produtos WHERE id = ?', [id])
+    return this.storage.executeSql('DELETE FROM operacoes WHERE id = ?', [id])
       .then(_ => {
         return id;
       });
   }
 
   public getById(id: number) {
-    return this.storage.executeSql('SELECT id, nome, quantidade, valor FROM produtos WHERE id = ?', [id]).then(res => {
+    return this.storage.executeSql('SELECT id, nome, tipo, valor FROM operacoes WHERE id = ?', [id]).then(res => {
       return {
         id: res.rows.item(0).id,
         nome: res.rows.item(0).nome,
-        quant: res.rows.item(0).quant,
-        valor: res.rows.item(0).valor
+        tipo: res.rows.item(0).tipo,
+        valor: res.rows.item(0).valor,
+        dataInclusao: res.rows.item(0).dataInclusao
       }
     });
   }
 
   public getAll() {
 
-    let produtos: Produto[] = [];
+    let operacoes: Operacoes[] = [];
 
-    return this.storage.executeSql('SELECT id, nome, quantidade, valor FROM produtos', []).then(res => {
-      let items: Produto[] = [];
+    return this.storage.executeSql('SELECT id, nome, tipo, valor, dataInclusao FROM operacoes', []).then(res => {
+      let items: Operacoes[] = [];
       if (res.rows.length > 0) {
         for (var i = 0; i < res.rows.length; i++) {
           items.push({
             id: res.rows.item(i).id,
             nome: res.rows.item(i).nome,
-            quant: res.rows.item(i).quantidade,
-            valor: res.rows.item(i).valor
+            tipo: res.rows.item(i).tipo,
+            valor: res.rows.item(i).valor,
+            dataInclusao: res.rows.item(i).dataInclusao
           });
         }
       }
-      this.produtos.next(items);
-      produtos = items;
+      this.operacoes.next(items);
+      operacoes = items;
     }).then(() => {
-      return Promise.resolve(produtos);
+      return Promise.resolve(operacoes);
     })
       .catch((error) => {
         return Promise.reject(error);
@@ -110,9 +112,17 @@ export class StorageService {
   }
 }
 
-export class Produto {
+// export class Produto {
+//   id: number;
+//   nome: string;
+//   quant: number;
+//   valor: number;
+// }
+
+export class Operacoes {
   id: number;
   nome: string;
-  quant: number;
+  tipo: number;
   valor: number;
+  dataInclusao: Date;
 }
