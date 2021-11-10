@@ -18,6 +18,9 @@ export class Tab1Page {
   tipo: string;
   valor: number;
   data_operacao: string;
+  recebimentosMes = 0;
+  gastosMes = 0;
+  saldoMes = 0;
 
   gastos: number = 0;
   ganhos: number = 0;
@@ -34,12 +37,23 @@ export class Tab1Page {
     this.databaseService.getAll()
       .then((result) => {
         this.financas = result;
-
-        this.financas.forEach(
-          x => x.tipo == "Ganho" ? this.ganhos += x.valor : this.gastos += x.valor);
-
-        this.saldo_total = this.ganhos - this.gastos;
+        this.calculo()
       });
+  }
+
+  calculo() {
+    this.saldoMes = 0;
+    this.recebimentosMes = 0;
+    this.gastosMes = 0;
+    this.financas.forEach(financa => {
+      if(financa.tipo == 'Ganho') {
+        this.recebimentosMes = this.recebimentosMes + financa.valor
+      } else {
+        this.gastosMes = this.gastosMes + financa.valor
+      }      
+    });
+
+    this.saldoMes = this.recebimentosMes - this.gastosMes;
   }
 
   adicionar() {
