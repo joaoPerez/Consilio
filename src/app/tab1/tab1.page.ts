@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
 import { DatabaseService, Financa } from '../services/database.service';
-import { Router } from '@angular/router';
-import { ThisReceiver } from '@angular/compiler';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
+
 export class Tab1Page {
 
   financas: Financa[];
@@ -27,7 +27,6 @@ export class Tab1Page {
   saldo_total: number = 0;
 
   constructor(
-    private router: Router,
     private databaseService: DatabaseService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController) {
@@ -72,8 +71,8 @@ export class Tab1Page {
       let nome = this.nome;
       let tipo = this.tipo;
       let valor = this.valor;
-      let data_operacao = this.data_operacao;
-
+      let data_operacao = moment(this.data_operacao).format("DD/MM/YYYY");
+      
       let financa = new Financa();
       financa.nome = nome;
       financa.tipo = tipo;

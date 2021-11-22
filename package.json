@@ -29,8 +29,10 @@
     "@ionic-native/sqlite-porter": "^5.36.0",
     "@ionic-native/status-bar": "^5.36.0",
     "@ionic/angular": "^5.5.2",
+    "cordova-android": "9.1.0",
     "cordova-browser": "6.0.0",
     "cordova-sqlite-storage": "^6.0.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1",
@@ -52,6 +54,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
+    "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
@@ -84,10 +87,12 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
-      "uk.co.workingedge.cordova.plugin.sqliteporter": {}
+      "uk.co.workingedge.cordova.plugin.sqliteporter": {},
+      "cordova-plugin-console": {}
     },
     "platforms": [
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

@@ -8,8 +8,19 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <div class="ion-text-center" type="submit">
+        <button ion-button icon-only clear style="background: transparent" (click)="atualizar()">
+          <ion-icon name="refresh-circle" color="primary" style="font-size: 60px"></ion-icon>
+        </button>
+        <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+      </div>
+    </ion-row>
     <ion-row>
       <ion-col>
         Quanto você quer guardar por mês?
@@ -17,16 +28,30 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-input type="number" name="value" placeholder="valor"></ion-input>
+        <ion-input type="number" name="value" [(ngModel)]="economia_mes_value" placeholder="R$ valor"></ion-input>
       </ion-col>
     </ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
         Meta de gastos por dia
@@ -34,32 +59,46 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        R$ 60,00
-      </ion-col>
-    </ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row><ion-col></ion-col></ion-row>
-    <ion-row>
-      <ion-col>
-        Sua média atual
+        R$ {{ meta_dia_value }}
       </ion-col>
     </ion-row>
     <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col>
-        R$ 50,00
+        Sua média de gastos atual
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        R$ {{ media_atual_value }}
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
 
 <ion-footer>
   <div class="ion-text-center">
-    <ion-label color="primary">Você está cumprindo sua meta</ion-label>
+    <ion-label *ngIf="balancoPositivo && economia_mes_value > 0" color="primary">Você está cumprindo sua meta</ion-label>
+    <ion-label *ngIf="!balancoPositivo && economia_mes_value > 0" color="danger">Você não está cumprindo sua meta</ion-label>
   </div>
 </ion-footer>

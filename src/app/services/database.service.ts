@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Platform } from '@ionic/angular';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +83,68 @@ export class DatabaseService {
     });
   }
 
+  public getAllByActualMonth() {
+    let financas: Financa[] = [];
+
+    let mes = moment().format("MM");
+    let ano = moment().format("YYYY");
+
+    return this.storage.executeSql("SELECT id, nome, tipo, valor, data_operacao, data_criacao FROM financas WHERE data_operacao LIKE '%" + mes + "/" + ano + "%'", []).then(res => {
+      let items: Financa[] = [];
+      if (res.rows.length > 0) {
+        for (var i = 0; i < res.rows.length; i++) {
+          items.push({
+            id: res.rows.item(i).id,
+            nome: res.rows.item(i).nome,
+            tipo: res.rows.item(i).tipo,
+            valor: res.rows.item(i).valor,
+            data_criacao: res.rows.item(i).data_criacao,
+            data_operacao: res.rows.item(i).data_operacao
+          });
+        }
+      }
+
+      this.financas.next(items);
+      financas = items;
+    }).then(() => {
+      return Promise.resolve(financas);
+    })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  }
+
+  public getAllByMonthAndYear(month : string, year : string ) {
+    let financas: Financa[] = [];
+
+    let mes = month;
+    let ano = year;
+
+    return this.storage.executeSql("SELECT id, nome, tipo, valor, data_operacao, data_criacao FROM financas WHERE data_operacao LIKE '%" + mes + "/" + ano + "%'", []).then(res => {
+      let items: Financa[] = [];
+      if (res.rows.length > 0) {
+        for (var i = 0; i < res.rows.length; i++) {
+          items.push({
+            id: res.rows.item(i).id,
+            nome: res.rows.item(i).nome,
+            tipo: res.rows.item(i).tipo,
+            valor: res.rows.item(i).valor,
+            data_criacao: res.rows.item(i).data_criacao,
+            data_operacao: res.rows.item(i).data_operacao
+          });
+        }
+      }
+
+      this.financas.next(items);
+      financas = items;
+    }).then(() => {
+      return Promise.resolve(financas);
+    })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  }
+
   public getAll() {
 
     let financas: Financa[] = [];
@@ -100,7 +163,7 @@ export class DatabaseService {
           });
         }
       }
-      
+
       this.financas.next(items);
       financas = items;
     }).then(() => {
